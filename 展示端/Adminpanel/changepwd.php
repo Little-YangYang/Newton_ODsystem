@@ -93,7 +93,7 @@ $idlm= $_POST["idengluma"];
 	}else{
 		if ($ipwd1==$ipwd2) {
 		$isql="update admin set username='$iadmin',password='$ipwd1',dengluma='$idlm' where id='1'";
-			if(mysql_query($isql)){
+			if($conn->query($isql)){
 			session_destroy();
 			echo'<meta http-equiv="Refresh" content="5; url=admin.php" /> 
 			<style>.control-group,.form-actions{display:none !important;}#admineditbox{height:60px !important;}</style>

@@ -67,7 +67,7 @@ $sql = "insert into yaoqingma(yaoqingma,time) values('$yaoqingma','$thetime')";
 <?php
 	if(isset($_POST['submit']) && $_POST['submit'])
 	{
-		 if(mysql_query($sql,$conn))
+		 if($conn->query($sql))
 		 {
 			 echo "生成成功！";
 			 if (!file_exists("../$yaoqingma"))
@@ -90,18 +90,18 @@ $sql = "insert into yaoqingma(yaoqingma,time) values('$yaoqingma','$thetime')";
 </form>
 	<ol style="padding:0 20px;">
 <?php
-	$sqll="select * from yaoqingma where status=0 order by id desc";
-	$rrss=mysql_query($sqll);
-	while($rows=mysql_fetch_assoc($rrss))
+	$sqll = "select * from yaoqingma where status=0 order by id desc";
+	$rrss = $conn->query($sqll);
+	while($rows = $rrss->fetch(PDO::FETCH_ASSOC))
 	{ ?>
 	<li><?php echo $rows["yaoqingma"]; ?></li>
 	<?php } ?>
 	</ol>
 		<ol style="padding:0 20px;">
 <?php
-	$sqll="select * from yaoqingma where status=1 order by id desc";
-	$rrss=mysql_query($sqll);
-	while($rows=mysql_fetch_assoc($rrss))
+	$sqll = "select * from yaoqingma where status=1 order by id desc";
+	$rrss = $conn->query($sqll);
+	while($rows = $rrss->fetch(PDO::FETCH_ASSOC))
 	{ ?>
 	<li style="text-decoration:line-through; color: #C36"><?php echo $rows["yaoqingma"]; ?></li>
 	<?php } ?>
